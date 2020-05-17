@@ -13,7 +13,7 @@ def speech_to_text(filename):
         f = open(filename, "a+")
         f.write("\n" + text)
         f.close
-        return true
+        return True
 
     except:
-        return false
+        return False
