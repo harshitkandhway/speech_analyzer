@@ -1,6 +1,15 @@
 from enchant.checker import SpellChecker
+import nltk
 
 chkr = SpellChecker("en_US")
+VERB_CODES = {
+    "VB",  # Verb, base form
+    "VBD",  # Verb, past tense
+    "VBG",  # Verb, gerund or present participle
+    "VBN",  # Verb, past participle
+    "VBP",  # Verb, non-3rd person singular present
+    "VBZ",  # Verb, 3rd person singular present
+}
 
 
 def rate_unnecessary_fillers(data):
@@ -18,7 +27,32 @@ def rate_unnecessary_fillers(data):
         return 1
 
 
-def rate_grammar(data, total_words):
+def rate_grammar(data):
+    words = data.split()
+    count = 0
+    for index, word in enumerate(words):
+        if word == "has" or word=have:
+            if is_VBN(words[index + 1], "VBN"):
+                count = count + 1
+    if count == 0:
+        return 1
+    if count >= 4:
+        return 0
+    if count >= 2:
+        return 0.5
+    if count == 1:
+        return 0.7
+
+
+def is_VBN(word, code):
+    result = nltk.pos_tag(word.split())
+    word_code = result[0][1]
+    if word_code == code:
+        return True
+    return False
+
+
+def rate_spelling(data, total_words):
     chkr.set_text(data)
     misspelled_words = 0
     for err in chkr:
