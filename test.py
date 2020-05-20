@@ -1,10 +1,28 @@
-def print_word(word):
-    print(word)
+import speech_recognition as sr
 
 
-data = "I have"
-words = data.split()
-for index, word in enumerate(words):
-    if word == "have":
-        print_word(words[index + 1])
-    # print(index, word)
+def speech_to_text(filename):
+    r = sr.Recognizer()
+    with sr.Microphone() as source:
+        print("say something")
+        audio = r.listen(source)
+        print("okay")
+    try:
+        text = r.recognize_google(audio)
+        print(f"You spoke: {text}")
+        f = open(filename, "a+")
+        f.write("\n" + text)
+        f.close
+        return True
+
+    except:
+        return False
+
+
+def generate_default_words(seconds):
+    normal = 60
+    t = 60 / seconds
+    print(150 / t)
+
+
+generate_default_words(25)

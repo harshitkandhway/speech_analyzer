@@ -14,10 +14,13 @@ VERB_CODES = {
 
 def rate_unnecessary_fillers(data):
     # yeah,you know,like
+    # I have worked on tech like java, like spring boot like mysql
     words = data.split()
     count = 0
     for word in words:
         if word.lower() == "like".lower():
+            count = count + 1
+        if word.lower() == "you know".lower():
             count = count + 1
     if count >= 3:
         return 0
@@ -31,9 +34,10 @@ def rate_grammar(data):
     words = data.split()
     count = 0
     for index, word in enumerate(words):
-        if word == "has" or word=have:
-            if is_VBN(words[index + 1], "VBN"):
+        if word == "has" or word == "have":
+            if not is_VBN(words[index + 1], "VBN"):
                 count = count + 1
+
     if count == 0:
         return 1
     if count >= 4:
@@ -58,11 +62,11 @@ def rate_spelling(data, total_words):
     for err in chkr:
         print("ERROR:", err.word)
         misspelled_words = misspelled_words + 1
-    error_per = misspelled_percentage(total_words, misspelled_words)
+    error_per = misspelled_words_percentage(total_words, misspelled_words)
     return rate_misspelled_percentage(error_per)
 
 
-def misspelled_percentage(total_words, misspelled_words):
+def misspelled_words_percentage(total_words, misspelled_words):
     return round(misspelled_words / total_words * 100, 2)
 
 
