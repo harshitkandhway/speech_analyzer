@@ -1,6 +1,6 @@
 # speech_analyzer
 
-Library used in the rating apllication are as follows:
+Library used in the rating application are as follows:
 
 ## 1) nltk (Natural Language Toolkit)
    + UseCase        : This python library is used while working with human language data
