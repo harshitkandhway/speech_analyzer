@@ -58,10 +58,14 @@ def is_VBN(word, code):
 
 def rate_spelling(data, total_words):
     chkr.set_text(data)
+    wrong_words = [""]
+    #wrong_words.clear()
     misspelled_words = 0
     for err in chkr:
-        print("ERROR:", err.word)
+        #print("ERROR:", err.word)
+        wrong_words.append(err.word)
         misspelled_words = misspelled_words + 1
+    print("ERROR : ",wrong_words)
     error_per = misspelled_words_percentage(total_words, misspelled_words)
     return rate_misspelled_percentage(error_per)
 
