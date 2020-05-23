@@ -19,7 +19,7 @@
 #         return False
 import speech_recognition as sr
 
-audio_file = "hindi_included.wav"
+audio_file = "very_slow.wav"
 
 
 def speech_to_text(filename):
